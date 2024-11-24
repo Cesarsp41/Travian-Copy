@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale=1.0>
+    <link rel="stylesheet" href="styles.css">
+    <title>Travian Copy</title>
+</head>
+<body>
+    <div class="game-container">
+        <div class="inventory-container">
+            <div class="saved-material">
+                <div class="icon wood-icon"></div>
+                <span class="saved-material-text" id="woodText">100</span>
+            </div>
+            <div class="saved-material">
+                <div class="icon clay-icon"></div>
+                <span class="saved-material-text" id="clayText">100</span>
+            </div>
+            <div class="saved-material">
+                <div class="icon iron-icon"></div>
+                <span class="saved-material-text" id="ironText">100</span>
+            </div>
+            <div class="saved-material" id="saved-cereal">
+                <div class="icon cereal-icon"></div>
+                <span class="saved-material-text" id="cerealText">100</span>
+            </div>
+        </div>
+        <div class="fields-container">
+            <div class="village-container four-field">
+                <div class="village-fields woods-container four-field">
+                    <button class="field-button" id="wood-button-1">0</button>
+                    <button class="field-button" id="wood-button-2">0</button>
+                    <button class="field-button" id="wood-button-3">0</button>
+                    <button class="field-button" id="wood-button-4">0</button>
+                </div>
+                <div class="village-fields clays-container four-field">
+                    <button class="field-button" id="clay-button-1">0</button>
+                    <button class="field-button" id="clay-button-2">0</button>
+                    <button class="field-button" id="clay-button-3">0</button>
+                    <button class="field-button" id="clay-button-4">0</button>
+                </div>
+                <div class="village-fields irons-container four-field">
+                    <button class="field-button" id="iron-button-1">0</button>
+                    <button class="field-button" id="iron-button-2">0</button>
+                    <button class="field-button" id="iron-button-3">0</button>
+                    <button class="field-button" id="iron-button-4">0</button>
+                </div>
+                <div class="village-fields cereals-container six-field">
+                    <button class="cereal-button" id="cereal-button-1">0</button>
+                    <button class="cereal-button" id="cereal-button-2">0</button>
+                    <button class="cereal-button" id="cereal-button-3">0</button>
+                    <button class="cereal-button" id="cereal-button-4">0</button>
+                    <button class="cereal-button" id="cereal-button-5">0</button>
+                </div>
+            </div>
+        </div>
+        <div class="production-container">
+            <div class="hour-production-container">
+                <h3>Produccion por hora</h3>
+                <div class="stat">
+                    <div class="name">
+                        <p>Madera</p>
+                    </div>
+                    <span class="amount-hour" id="wood-hour-text"><strong>10</strong></span>
+                </div>
+                <div class="stat">
+                    <div class="name">
+                
+                        <p>Barro</p>
+                    </div>
+                    <span class="amount-hour" id="clay-hour-text"><strong>10</strong></span>
+                </div>
+                <div class="stat">
+                    <div class="name">
+                        <p>Hierro</p>
+                    </div>
+                    <span class="amount-hour" id="iron-hour-text"><strong>10</strong></span>
+                </div>
+                <div class="stat">
+                    <div class="name">
+                        <p>Cereales</p>
+                    </div>
+                    <span class="amount-hour" id="cereal-hour-text"><strong>10</strong></span>
+                </div>
+            </div>
+            <button class="storage-button" id="warehouse-button">
+                <div class="icon storage-icon"></div>
+                <p>Almacen</p>
+                <span class="warehouseText">1</span>
+            </button>
+            <button class="storage-button" id="barn-button">
+                <div class="icon cereal-icon"></div>
+                <p>Granero</p>
+                <span class="barnText">1</span>
+            </button>
+            <button id="production-button">Producir</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
