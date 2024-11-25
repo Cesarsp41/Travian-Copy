@@ -479,11 +479,15 @@ const barnPrices = [
     }
 ];
 
+// Production increases
+const productionIncreases = [7, 13, 21, 31, 46, 70, 98, 140, 203, 280];
+
 // Inicializar elementos modificables
 const woodText = document.getElementById("woodText");
 const clayText = document.getElementById("clayText");
 const ironText = document.getElementById("ironText");
 const cerealText = document.getElementById("cerealText");
+const information = document.querySelector(".info-container");
 
 // Botones
 const woodButton1 = document.getElementById("wood-button-1");
@@ -515,8 +519,8 @@ const cerealHourText = document.getElementById("cereal-hour-Text");
 const warehouseButton = document.getElementById("warehouse-button");
 const barnButton = document.getElementById("barn-button");
 
-const wareHouseText = document.getElementsByClassName("warehouseText");
-const barnText = document.getElementsByClassName("barnText");
+const wareHouseText = document.querySelector(".warehouseText");
+const barnText = document.querySelector(".barnText");
 
 const produceButton = document.getElementById("production-button");
 
@@ -524,7 +528,7 @@ let currentwarehouseIndex = 0;
 let currentBarnIndex = 0;
 
 
-// Functions 
+// Function
 function produce(){
     // Calculations needed
     let wSize = warehousePrices[currentwarehouseIndex].size;
@@ -534,48 +538,91 @@ function produce(){
     let availableClay = wSize - clay;
     let availableIron = wSize - iron;
     let availableCereal = bSize - cereal;
+
     //Asign warehouse and barn
     wood = (woodHour <= availableWood) ? wood + woodHour : wSize;
     clay = (clayHour <= availableClay) ? clay + clayHour : wSize;
     iron = (ironHour <= availableIron) ? iron + ironHour : wSize;
     cereal = (woodHour <= availableCereal) ? cereal + cerealHour : bSize;
+
     //Update text
     woodText.innerText = wood;
     clayText.innerText = clay;
     ironText.innerText = iron;
     cerealText.innerText = cereal;
+    information.style.display = "none";
 }
-
 produceButton.onclick = produce;
 
-// upgrade()
-// que necesito saber?
-// el costo
-// si tengo los materiales
-// que informacion de texto voy a actualizar
-function upgrade(){
-
+// Helper function
+function priceCheck(woodC, clayC, ironC, cerealC){
+    let value = true;
+    if (woodC > wood || clayC > clay || ironC > iron || cerealC > cereal){
+        value = false;
+    }
+    return value;
 }
 
-woodButton1.onclick = upgrade;
-woodButton2.onclick = upgrade;
-woodButton3.onclick = upgrade;
-woodButton4.onclick = upgrade;
+function warehouseUpgrade(){
+    let w = warehousePrices[currentwarehouseIndex].wood;
+    let c = warehousePrices[currentwarehouseIndex].clay;
+    let i = warehousePrices[currentwarehouseIndex].iron;
+    let ce = warehousePrices[currentwarehouseIndex].cereal;
 
-clayButton1.onclick = upgrade;
-clayButton2.onclick = upgrade;
-clayButton3.onclick = upgrade;
-clayButton4.onclick = upgrade;
+    if (priceCheck(w, c, i, ce)){
+        // Comprar y aumentar index
+        wood -= w;
+        clay -= c;
+        iron -= i;
+        cereal -= ce;
+        currentwarehouseIndex++;
 
-ironButton1.onclick = upgrade;
-ironButton2.onclick = upgrade;
-ironButton3.onclick = upgrade;
-ironButton4.onclick = upgrade;
+        // Mostrar texto de compra
+        information.innerText = "Compraste mas almacenamiento. Capacidad: " + warehousePrices[currentwarehouseIndex].size;
+        information.style.display = "flex";
+    }
+    else
+    {
+        information.innerText = "No tienes los suficientes recursos";
+        information.style.display = "flex";
+    }
 
-cerealButton1.onclick = upgrade;
-cerealButton2.onclick = upgrade;
-cerealButton3.onclick = upgrade;
-cerealButton4.onclick = upgrade;
+    woodText.innerText = wood;
+    clayText.innerText = clay;
+    ironText.innerText = iron;
+    cerealText.innerText = cereal;
+    wareHouseText.innerText = currentwarehouseIndex + 1;
+}
+warehouseButton.onclick = warehouseUpgrade;
 
-warehouseButton.onclick = upgrade;
-barnButton.onclick = upgrade;
+
+// WOOD Handling
+function upgradeWood(index){
+    if (woodFields[index] == 10){
+        // NO SE PUEDE, MAXIMO
+    }
+    else{
+        // Cambiar boton
+        // Cambiar produccion hora
+        let w = woodPrices[woodFields[index]].wood;
+        let c = woodPrices[woodFields[index]].clay;
+        let i = woodPrices[woodFields[index]].iron;
+        let ce = woodPrices[woodFields[index]].cereal;
+        if (priceCheck(w, c, i, ce)){
+            // Si me alcanza, comprar, aumentar la produccion y actualizar textos
+        }
+        else{
+            // NO SE PUEDE, NO HAY MONEY
+        }
+    }
+}
+
+function upgradeWood1(){upgradeWood(0);}
+function upgradeWood2(){upgradeWood(1);}
+function upgradeWood3(){upgradeWood(2);}
+function upgradeWood4(){upgradeWood(3);}
+
+woodButton1.onclick = upgradeWood1;
+woodButton2.onclick = upgradeWood2;
+woodButton3.onclick = upgradeWood3;
+woodButton4.onclick = upgradeWood4;

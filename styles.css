@@ -176,7 +176,7 @@ body{
     background-color: var(--background-color);
     border-radius: 10px;
     margin: 17px 0;
-    font-size: 13px;
+    font-size: 14px;
     padding: 0 15px;
     display: flex;
     flex-direction: column;
@@ -224,4 +224,19 @@ body{
     justify-content: space-between;
     align-items: center;
 }
+
+.info-container{
+    width: 500px;
+    height: 60px;
+    background-color: var(--background-color);
+    border-radius: 15px;
+    position: absolute;
+    top: 220px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
 
